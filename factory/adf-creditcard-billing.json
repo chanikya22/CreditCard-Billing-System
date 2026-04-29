@@ -1,0 +1,15 @@
+{
+	"name": "adf-creditcard-billing",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "3d0fb699-1755-49ac-b79b-9a4eb7d3f15f",
+		"tenantId": "4c5bf625-716b-491d-8147-cfbd66b4bc7f"
+	}
+}
