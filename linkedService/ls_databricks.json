@@ -1,0 +1,7 @@
+{
+	"name": "ls_databricks",
+	"properties": {
+		"annotations": [],
+		"type": "Databricks"
+	}
+}
