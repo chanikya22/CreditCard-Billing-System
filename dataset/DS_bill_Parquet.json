@@ -1,0 +1,19 @@
+{
+	"name": "DS_bill_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureDataLakeStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "bills"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
