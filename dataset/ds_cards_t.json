@@ -1,0 +1,58 @@
+{
+	"name": "ds_cards_t",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureSqlDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "card_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "customer_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "billing_day",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "due_days",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "grace_days",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "credit_limit",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "card_status",
+				"type": "varchar"
+			},
+			{
+				"name": "created_at",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "cards"
+		}
+	}
+}

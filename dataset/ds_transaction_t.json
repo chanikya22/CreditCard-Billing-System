@@ -1,0 +1,51 @@
+{
+	"name": "ds_transaction_t",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureSqlDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "txn_id",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "card_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "txn_date",
+				"type": "date"
+			},
+			{
+				"name": "amount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "txn_type",
+				"type": "varchar"
+			},
+			{
+				"name": "description",
+				"type": "varchar"
+			},
+			{
+				"name": "created_ts",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "transactions"
+		}
+	}
+}

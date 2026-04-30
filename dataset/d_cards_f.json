@@ -1,0 +1,26 @@
+{
+	"name": "d_cards_f",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureDataLakeStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(\n'billing_cards_',\nformatDateTime(utcNow(),'yyyyMMddHHmmss'),\n'.parquet'\n)",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@concat(\n'/billing/cards/',\nformatDateTime(utcNow(),'yyyy/MM/dd'),'/'\n)",
+					"type": "Expression"
+				}
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

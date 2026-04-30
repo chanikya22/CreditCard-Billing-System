@@ -1,0 +1,23 @@
+{
+	"name": "ds_transations",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureDataLakeStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(\n'billing_transactions_',\nformatDateTime(utcNow(),'yyyyMMddHHmmss'),\n'.parquet'\n)",
+					"type": "Expression"
+				},
+				"fileSystem": "@concat( 'billing/transactions/', formatDateTime(utcNow(),'yyyy/MM/dd'),'/' )"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
