@@ -61,7 +61,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"sqlReaderQuery": "@concat(\n'SELECT t.* \n FROM transactions t\n JOIN cards c ON t.card_id = c.card_id\n WHERE c.billing_day = ',\nformatDateTime(utcNow(),'dd')\n)",
+									"sqlReaderQuery": {
+										"value": "@concat(\n'SELECT t.* \n FROM transactions t\n JOIN cards c ON t.card_id = c.card_id\n WHERE c.billing_day = ',\nformatDateTime(utcNow(),'dd')\n)",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
