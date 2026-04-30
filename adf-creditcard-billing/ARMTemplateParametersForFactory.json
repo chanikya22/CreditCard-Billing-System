@@ -5,11 +5,17 @@
 		"factoryName": {
 			"value": "adf-creditcard-billing"
 		},
+		"AzureDatabricks1_accessToken": {
+			"value": ""
+		},
 		"ls_AzureDataLakeStorage_accountKey": {
 			"value": ""
 		},
 		"ls_AzureSqlDatabase_password": {
 			"value": ""
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"value": "0429-090326-l2kobbtn"
 		},
 		"ls_AzureDataLakeStorage_properties_typeProperties_url": {
 			"value": "https://stccbillingdata.dfs.core.windows.net/"

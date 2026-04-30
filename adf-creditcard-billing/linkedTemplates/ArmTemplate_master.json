@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-creditcard-billing"
 		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
 		"ls_AzureDataLakeStorage_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_AzureDataLakeStorage'"
@@ -14,6 +18,10 @@
 		"ls_AzureSqlDatabase_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_AzureSqlDatabase'"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0429-090326-l2kobbtn"
 		},
 		"ls_AzureDataLakeStorage_properties_typeProperties_url": {
 			"type": "string",
@@ -58,11 +66,17 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureDatabricks1_accessToken": {
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
 					"ls_AzureDataLakeStorage_accountKey": {
 						"value": "[parameters('ls_AzureDataLakeStorage_accountKey')]"
 					},
 					"ls_AzureSqlDatabase_password": {
 						"value": "[parameters('ls_AzureSqlDatabase_password')]"
+					},
+					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
 					},
 					"ls_AzureDataLakeStorage_properties_typeProperties_url": {
 						"value": "[parameters('ls_AzureDataLakeStorage_properties_typeProperties_url')]"

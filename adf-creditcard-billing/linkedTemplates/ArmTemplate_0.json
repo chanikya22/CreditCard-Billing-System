@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-creditcard-billing"
 		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
 		"ls_AzureDataLakeStorage_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_AzureDataLakeStorage'"
@@ -14,6 +18,10 @@
 		"ls_AzureSqlDatabase_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_AzureSqlDatabase'"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0429-090326-l2kobbtn"
 		},
 		"ls_AzureDataLakeStorage_properties_typeProperties_url": {
 			"type": "string",
@@ -36,6 +44,24 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-7405610146200386.6.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
+					"existingClusterId": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ls_AzureDataLakeStorage')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -139,7 +165,7 @@
 							"type": "Expression"
 						},
 						"fileSystem": {
-							"value": "@concat(\n'/billing/cards/',\nformatDateTime(utcNow(),'yyyy/MM/dd'),'/'\n)",
+							"value": "@concat(\n'/billing/cards/',\nformatDateTime(utcNow(),'yyyyMMdd'),'/'\n)",
 							"type": "Expression"
 						}
 					},
@@ -234,7 +260,7 @@
 						},
 						"folderPath": "customerdetails",
 						"fileSystem": {
-							"value": "@concat( 'billing/customers/', formatDateTime(utcNow(),'yyyy/MM/dd'),'/' )",
+							"value": "@concat( 'billing/customers/', formatDateTime(utcNow(),'yyyyMMdd'),'/' )",
 							"type": "Expression"
 						}
 					},
@@ -362,7 +388,7 @@
 							"type": "Expression"
 						},
 						"fileSystem": {
-							"value": "@concat( 'billing/transactions/', formatDateTime(utcNow(),'yyyy/MM/dd'),'/' )",
+							"value": "@concat( 'billing/transactions/', formatDateTime(utcNow(),'yyyyMMdd'),'/' )",
 							"type": "Expression"
 						}
 					},
@@ -553,14 +579,7 @@
 								{
 									"name": "Copy_Billing_Cards",
 									"type": "Copy",
-									"dependsOn": [
-										{
-											"activity": "Copy_Billing_Transactions",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
+									"dependsOn": [],
 									"policy": {
 										"timeout": "0.12:00:00",
 										"retry": 0,
@@ -613,14 +632,7 @@
 								{
 									"name": "Copy_customers",
 									"type": "Copy",
-									"dependsOn": [
-										{
-											"activity": "Copy_Billing_Cards",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
+									"dependsOn": [],
 									"policy": {
 										"timeout": "0.12:00:00",
 										"retry": 0,
@@ -713,6 +725,67 @@
 				"[concat(variables('factoryId'), '/datasets/d_cards_f')]",
 				"[concat(variables('factoryId'), '/datasets/ds_customers_t')]",
 				"[concat(variables('factoryId'), '/datasets/ds_customers_f')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Exe_PL_Billing_Ext",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"policy": {
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "PL_Billing_Data_Extraction",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Bill_generate_Notebook",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Exe_PL_Billing_Ext",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/chanikyaladi@outlook.com/billtable"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks1",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PL_Billing_Data_Extraction')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks1')]"
 			]
 		}
 	]
