@@ -14,7 +14,10 @@
 					"value": "@concat(\n'billing_transactions_',\nformatDateTime(utcNow(),'yyyyMMddHHmmss'),\n'.parquet'\n)",
 					"type": "Expression"
 				},
-				"fileSystem": "@concat( 'billing/transactions/', formatDateTime(utcNow(),'yyyy/MM/dd'),'/' )"
+				"fileSystem": {
+					"value": "@concat( 'billing/transactions/', formatDateTime(utcNow(),'yyyyMMdd'),'/' )",
+					"type": "Expression"
+				}
 			},
 			"compressionCodec": "snappy"
 		},

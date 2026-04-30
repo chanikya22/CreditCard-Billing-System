@@ -16,7 +16,7 @@
 				},
 				"folderPath": "customerdetails",
 				"fileSystem": {
-					"value": "@concat( 'billing/customers/', formatDateTime(utcNow(),'yyyy/MM/dd'),'/' )",
+					"value": "@concat( 'billing/customers/', formatDateTime(utcNow(),'yyyyMMdd'),'/' )",
 					"type": "Expression"
 				}
 			},

@@ -15,7 +15,7 @@
 					"type": "Expression"
 				},
 				"fileSystem": {
-					"value": "@concat(\n'/billing/cards/',\nformatDateTime(utcNow(),'yyyy/MM/dd'),'/'\n)",
+					"value": "@concat(\n'/billing/cards/',\nformatDateTime(utcNow(),'yyyyMMdd'),'/'\n)",
 					"type": "Expression"
 				}
 			},
