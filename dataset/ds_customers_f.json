@@ -14,7 +14,6 @@
 					"value": "@concat(\n'billing_customers_',\nformatDateTime(utcNow(),'yyyyMMdd'),\n'.parquet'\n)",
 					"type": "Expression"
 				},
-				"folderPath": "customerdetails",
 				"fileSystem": {
 					"value": "@concat( 'billing/customers/', formatDateTime(utcNow(),'yyyyMMdd'),'/' )",
 					"type": "Expression"
