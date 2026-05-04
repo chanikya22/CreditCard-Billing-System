@@ -38,7 +38,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/chanikyaladi@outlook.com/billtable"
+					"notebookPath": "/Users/chanikyaladi@outlook.com/Billing Engine notebook"
 				},
 				"linkedServiceName": {
 					"referenceName": "AzureDatabricks1",

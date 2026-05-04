@@ -1,0 +1,89 @@
+{
+	"name": "ds_bills_lookup",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureSqlDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "bill_id",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "card_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "billing_start_date",
+				"type": "date"
+			},
+			{
+				"name": "billing_end_date",
+				"type": "date"
+			},
+			{
+				"name": "bill_date",
+				"type": "date"
+			},
+			{
+				"name": "due_date",
+				"type": "date"
+			},
+			{
+				"name": "total_amount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "minimum_due",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "remaining_amount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "late_fee",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "interest",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "total_charges",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "bill_status",
+				"type": "varchar"
+			},
+			{
+				"name": "created_ts",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "bills"
+		}
+	}
+}
