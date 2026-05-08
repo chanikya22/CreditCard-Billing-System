@@ -5,13 +5,13 @@
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"server": "abdc-billing-sql-server.database.windows.net",
+			"server": "abdc-billing-sql-server-abdc2026.database.windows.net",
 			"database": "Creditcard_billing_db",
 			"encrypt": "optional",
 			"trustServerCertificate": false,
 			"authenticationType": "SQL",
-			"userName": "bankadmin@abdc-billing-sql-server",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEJEQTUxRTJBLTU1QjctNDg0My1COUVELTZCQzY2RTM5Qzk4RV83ZmZmY2Y0OC05N2RmLTQwMWEtYjFlYy0yMmEyOGE3YTk3MDgiDQp9"
+			"userName": "bankadmin",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDFDQTQ2OUI2LUM4RDYtNEM5My05OURCLUJBOUI0RjRCNkVDMF8wMmEzNzAxNS0zNjcyLTQxMTItYjk5Yy00OTE4NGIzZDI2YjkiDQp9"
 		}
 	}
 }
